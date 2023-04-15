@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import javax.swing.*;
+<<<<<<< HEAD
 <<<<<<< HEAD:src/main/java/com/mycompany/moviebooking/Controller/AddmovieController.java
 
 import com.mycompany.moviebooking.Model.CGVcinema;
@@ -12,6 +13,8 @@ import com.mycompany.moviebooking.Model.Lottecinema;
 
 =======
 >>>>>>> parent of 255df50 (MVC):src/main/java/com/mycompany/moviebooking/AddmovieController.java
+=======
+>>>>>>> parent of 255df50 (MVC)
 import java.io.*;
 
 public class AddmovieController implements Serializable  {

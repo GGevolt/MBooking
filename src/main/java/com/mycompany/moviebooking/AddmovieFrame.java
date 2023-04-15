@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.moviebooking.View;
+package com.mycompany.moviebooking;
 
 import java.io.*;
 import java.util.Date;
@@ -11,17 +11,7 @@ import java.util.InputMismatchException;
 
 import javax.swing.JOptionPane;
 
-<<<<<<< HEAD:src/main/java/com/mycompany/moviebooking/View/AddmovieFrame.java
-<<<<<<< HEAD:src/main/java/com/mycompany/moviebooking/View/AddmovieFrame.java
-import com.mycompany.moviebooking.Controller.AddmovieController;
-import com.mycompany.moviebooking.Model.CGVcinema;
-import com.mycompany.moviebooking.Model.Galaxycinema;
-import com.mycompany.moviebooking.Model.Lottecinema;
 
-=======
->>>>>>> parent of 255df50 (MVC):src/main/java/com/mycompany/moviebooking/AddmovieFrame.java
-=======
->>>>>>> parent of 255df50 (MVC):src/main/java/com/mycompany/moviebooking/AddmovieFrame.java
 /**
  *
  * @author ADMIN

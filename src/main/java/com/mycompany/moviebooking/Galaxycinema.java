@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD:src/main/java/com/mycompany/moviebooking/Model/Galaxycinema.java
-package com.mycompany.moviebooking.Model;
-=======
+
 package com.mycompany.moviebooking;
->>>>>>> parent of 255df50 (MVC):src/main/java/com/mycompany/moviebooking/Galaxycinema.java
-=======
-package com.mycompany.moviebooking;
->>>>>>> parent of 255df50 (MVC)
+
 import java.util.Date;
 
 public class Galaxycinema extends Movie {

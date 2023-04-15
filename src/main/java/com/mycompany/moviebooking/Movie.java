@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD:src/main/java/com/mycompany/moviebooking/Model/Movie.java
-package com.mycompany.moviebooking.Model;
-=======
 package com.mycompany.moviebooking;
->>>>>>> parent of 255df50 (MVC):src/main/java/com/mycompany/moviebooking/Movie.java
-=======
-package com.mycompany.moviebooking;
->>>>>>> parent of 255df50 (MVC)
+
 
 import java.io.Serializable;
 

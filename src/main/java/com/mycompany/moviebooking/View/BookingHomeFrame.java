@@ -1264,7 +1264,9 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                         }
                     }
             }
-        catch (Exception f){
+        }catch (InputMismatchException e) {
+            JOptionPane.showMessageDialog(null,"Invalid input format! Please enter the valid data.");
+        }catch (Exception f){
             JOptionPane.showMessageDialog(null, "Error");
             System.out.println(f.getMessage());
         }

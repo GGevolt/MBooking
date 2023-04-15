@@ -8,8 +8,6 @@ import java.util.InputMismatchException;
 
 import javax.swing.JOptionPane;
 
-import com.mycompany.moviebooking.Controller.AuthenticationController;
-
 /**
  *
  * @author ADMIN

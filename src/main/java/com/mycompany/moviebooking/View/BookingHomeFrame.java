@@ -12,13 +12,6 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-import com.mycompany.moviebooking.Controller.AddmovieController;
-import com.mycompany.moviebooking.Controller.AuthenticationController;
-import com.mycompany.moviebooking.Controller.BookingController;
-import com.mycompany.moviebooking.Model.CGVBooking;
-import com.mycompany.moviebooking.Model.GalaxyBooking;
-import com.mycompany.moviebooking.Model.LotteBooking;
-
 /**
  *
  * @author ADMIN
@@ -1270,7 +1263,6 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                             }
                         }
                     }
-                }    
             }
         catch (Exception f){
             JOptionPane.showMessageDialog(null, "Error");

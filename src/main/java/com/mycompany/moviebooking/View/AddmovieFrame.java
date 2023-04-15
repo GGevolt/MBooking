@@ -11,11 +11,14 @@ import java.util.InputMismatchException;
 
 import javax.swing.JOptionPane;
 
+<<<<<<< HEAD:src/main/java/com/mycompany/moviebooking/View/AddmovieFrame.java
 import com.mycompany.moviebooking.Controller.AddmovieController;
 import com.mycompany.moviebooking.Model.CGVcinema;
 import com.mycompany.moviebooking.Model.Galaxycinema;
 import com.mycompany.moviebooking.Model.Lottecinema;
 
+=======
+>>>>>>> parent of 255df50 (MVC):src/main/java/com/mycompany/moviebooking/AddmovieFrame.java
 /**
  *
  * @author ADMIN

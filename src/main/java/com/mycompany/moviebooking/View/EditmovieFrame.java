@@ -7,8 +7,6 @@ import java.util.Date;
 import java.util.InputMismatchException;
 
 import javax.swing.*;
-
-import com.mycompany.moviebooking.Controller.AddmovieController;
 /**
  *
  * @author ADMIN

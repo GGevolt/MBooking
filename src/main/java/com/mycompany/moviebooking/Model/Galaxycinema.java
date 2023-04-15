@@ -1,14 +1,13 @@
 package com.mycompany.moviebooking.Model;
-
 import java.util.Date;
 
-public class CGVcinema extends Movie {
+public class Galaxycinema extends Movie {
     private double ticketPrice;
     private int seatNumber;
     private int halls;
     private Date movieTime;
 
-    public CGVcinema(String name, int releaseYear, String director, String genre, double ticketPrice, int seatNumber, int halls, Date movieTime) {
+    public Galaxycinema(String name, int releaseYear, String director, String genre, double ticketPrice, int seatNumber, int halls, Date movieTime) {
     super(name, releaseYear, director, genre);
         this.ticketPrice = ticketPrice;
         this.seatNumber = seatNumber;

@@ -5,8 +5,8 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import javax.swing.*;
 
-import com.mycompany.moviebooking.Form.Galaxycinema;
 import com.mycompany.moviebooking.Model.CGVcinema;
+import com.mycompany.moviebooking.Model.Galaxycinema;
 import com.mycompany.moviebooking.Model.Lottecinema;
 
 import java.io.*;

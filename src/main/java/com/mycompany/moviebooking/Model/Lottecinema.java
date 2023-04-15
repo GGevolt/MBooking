@@ -1,8 +1,6 @@
 package com.mycompany.moviebooking.Model;
 import java.util.Date;
 
-import com.mycompany.moviebooking.Form.Movie;
-
 public class Lottecinema extends Movie {
     private double ticketPrice;
     private int seatNumber;

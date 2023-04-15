@@ -1,14 +1,15 @@
-package com.mycompany.moviebooking;
-
+package com.mycompany.moviebooking.Model;
 import java.util.Date;
 
-public class CGVcinema extends Movie {
+import com.mycompany.moviebooking.Form.Movie;
+
+public class Lottecinema extends Movie {
     private double ticketPrice;
     private int seatNumber;
     private int halls;
     private Date movieTime;
 
-    public CGVcinema(String name, int releaseYear, String director, String genre, double ticketPrice, int seatNumber, int halls, Date movieTime) {
+    public Lottecinema(String name, int releaseYear, String director, String genre, double ticketPrice, int seatNumber, int halls, Date movieTime) {
     super(name, releaseYear, director, genre);
         this.ticketPrice = ticketPrice;
         this.seatNumber = seatNumber;
@@ -39,6 +40,7 @@ public class CGVcinema extends Movie {
     public void setHalls(int halls) {
         this.halls = halls;
     }
+
 
     public Date getMovieTime() {
         return movieTime;

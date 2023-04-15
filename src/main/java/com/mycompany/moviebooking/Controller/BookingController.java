@@ -1,13 +1,17 @@
-package com.mycompany.moviebooking;
+package com.mycompany.moviebooking.Controller;
 
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
 
+import com.mycompany.moviebooking.Model.CGVBooking;
+import com.mycompany.moviebooking.Model.GalaxyBooking;
+import com.mycompany.moviebooking.Model.LotteBooking;
+
 public class BookingController {
-    ArrayList<CGVBooking> cgvOrder;
-    ArrayList<GalaxyBooking> galaxyOrder;
-    ArrayList<LotteBooking> lotteOrder;
+    public ArrayList<CGVBooking> cgvOrder;
+    public ArrayList<GalaxyBooking> galaxyOrder;
+    public ArrayList<LotteBooking> lotteOrder;
     public BookingController(){
         cgvOrder = new ArrayList<CGVBooking>();
         galaxyOrder = new ArrayList<GalaxyBooking>();

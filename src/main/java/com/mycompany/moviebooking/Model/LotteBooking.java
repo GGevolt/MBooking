@@ -1,13 +1,13 @@
-package com.mycompany.moviebooking;
+package com.mycompany.moviebooking.Model;
 
 import java.io.Serializable;
 
-public class CGVBooking implements Serializable {
+public class LotteBooking implements Serializable {
     private int userid;
     private int choosedseat;
     private int movieid;
 
-    public CGVBooking(int userid, int movieid, int choosedseat) {
+    public LotteBooking(int userid, int movieid, int choosedseat) {
         this.userid = userid;
         this.movieid = movieid;
         this.choosedseat = choosedseat;
@@ -37,5 +37,4 @@ public class CGVBooking implements Serializable {
     public void setMovieid(int movieid) {
         this.movieid = movieid;
     }
-    
 }

@@ -11,6 +11,11 @@ import java.util.InputMismatchException;
 
 import javax.swing.JOptionPane;
 
+import com.mycompany.moviebooking.Controller.AddmovieController;
+import com.mycompany.moviebooking.Form.Galaxycinema;
+import com.mycompany.moviebooking.Model.CGVcinema;
+import com.mycompany.moviebooking.Model.Lottecinema;
+
 /**
  *
  * @author ADMIN

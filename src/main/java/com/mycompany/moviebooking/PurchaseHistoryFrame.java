@@ -7,6 +7,10 @@ package com.mycompany.moviebooking;
 
 import javax.swing.table.DefaultTableModel;
 
+import com.mycompany.moviebooking.Controller.AddmovieController;
+import com.mycompany.moviebooking.Controller.AuthenticationController;
+import com.mycompany.moviebooking.Controller.BookingController;
+
 /**
  *
  * @author ADMIN

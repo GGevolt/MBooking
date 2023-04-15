@@ -1,13 +1,13 @@
-package com.mycompany.moviebooking;
+package com.mycompany.moviebooking.Model;
 
 import java.io.Serializable;
 
-public class LotteBooking implements Serializable {
+public class GalaxyBooking implements Serializable {
     private int userid;
     private int choosedseat;
     private int movieid;
 
-    public LotteBooking(int userid, int movieid, int choosedseat) {
+    public GalaxyBooking(int userid, int movieid, int choosedseat) {
         this.userid = userid;
         this.movieid = movieid;
         this.choosedseat = choosedseat;

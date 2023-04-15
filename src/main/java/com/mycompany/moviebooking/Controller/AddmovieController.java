@@ -1,15 +1,20 @@
-package com.mycompany.moviebooking;
+package com.mycompany.moviebooking.Controller;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import javax.swing.*;
+
+import com.mycompany.moviebooking.Form.Galaxycinema;
+import com.mycompany.moviebooking.Model.CGVcinema;
+import com.mycompany.moviebooking.Model.Lottecinema;
+
 import java.io.*;
 
 public class AddmovieController implements Serializable  {
-    ArrayList<CGVcinema> cgv;
-    ArrayList<Galaxycinema> galaxy;
-    ArrayList<Lottecinema> lotte;
+    public ArrayList<CGVcinema> cgv;
+    public ArrayList<Galaxycinema> galaxy;
+    public ArrayList<Lottecinema> lotte;
     public AddmovieController(){
         cgv = new ArrayList<CGVcinema>();
         galaxy = new ArrayList<Galaxycinema>();

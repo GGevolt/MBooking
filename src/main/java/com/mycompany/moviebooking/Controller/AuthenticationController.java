@@ -1,9 +1,12 @@
-package com.mycompany.moviebooking;
+package com.mycompany.moviebooking.Controller;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.*;
+
+import com.mycompany.moviebooking.Model.Account;
+
 import java.io.*;
 
 public class AuthenticationController implements Serializable {

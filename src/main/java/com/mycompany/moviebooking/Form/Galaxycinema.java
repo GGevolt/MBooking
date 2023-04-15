@@ -1,4 +1,4 @@
-package com.mycompany.moviebooking;
+package com.mycompany.moviebooking.Form;
 import java.util.Date;
 
 public class Galaxycinema extends Movie {

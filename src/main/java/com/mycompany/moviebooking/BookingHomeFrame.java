@@ -1252,9 +1252,9 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                                 int b = a - selectedIndex;
                                 addmovie.lotte.get(i).setSeatNumber(b);
                                 addmovie.saveMovieToLotteCinemaFile();
-                                LotteBooking lotteBooking =new LotteBooking(id, i, selectedIndex);
-                                booking.lotteOrder.add(lotteBooking);
-                                booking.saveTicketToLotteCinemaFile();
+                                Booking purchase =new Booking("Lotte cinema",id, i, selectedIndex);
+                                booking.order.add(purchase);
+                                booking.saveTicketToFile();
                                 JOptionPane.showMessageDialog(null,"Successfully purchase ticket from Lotte cinema file!");
                                 final BookingHomeFrame Frame = new BookingHomeFrame();
                                 Frame.setVisible(true);
@@ -1295,9 +1295,9 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                                 int b = a - selectedIndex;
                                 addmovie.cgv.get(i).setSeatNumber(b);
                                 addmovie.saveMovieToCgvCinemaFile();
-                                CGVBooking cgvBooking =new CGVBooking(id, i, selectedIndex);
-                                booking.cgvOrder.add(cgvBooking);
-                                booking.saveTicketToCgvCinemaFile();
+                                Booking puchase =new Booking("CGV cinema",id, i, selectedIndex);
+                                booking.order.add(puchase);
+                                booking.saveTicketToFile();
                                 JOptionPane.showMessageDialog(null,"Successfully purchase ticket from CGV cinema file!");
                                 final BookingHomeFrame Frame = new BookingHomeFrame();
                                 Frame.setVisible(true);
@@ -1452,9 +1452,9 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                                 int b = a - selectedIndex;
                                 addmovie.galaxy.get(i).setSeatNumber(b);
                                 addmovie.saveMovieToGalaxyCinemaFile();
-                                GalaxyBooking galaxyBooking =new GalaxyBooking(id, i, selectedIndex);
-                                booking.galaxyOrder.add(galaxyBooking);
-                                booking.saveTicketToGalaxyCinemaFile();
+                                Booking purchase =new Booking("Galaxy cinema",id, i, selectedIndex);
+                                booking.order.add(purchase);
+                                booking.saveTicketToFile();
                                 JOptionPane.showMessageDialog(null,"Successfully purchase ticket from Galaxy cinema file!");
                                 final BookingHomeFrame Frame = new BookingHomeFrame();
                                 Frame.setVisible(true);

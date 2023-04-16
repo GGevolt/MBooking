@@ -4,9 +4,7 @@
  */
 package com.mycompany.moviebooking;
 
-import java.io.*;
 import java.util.Date;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import javax.swing.JOptionPane;

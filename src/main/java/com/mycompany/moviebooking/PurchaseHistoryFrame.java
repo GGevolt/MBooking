@@ -19,7 +19,7 @@ public class PurchaseHistoryFrame extends javax.swing.JFrame {
      */
     public PurchaseHistoryFrame() {
         initComponents();
-        AddmovieController addmovie = new AddmovieController();
+        MovieController movie = new MovieController();
         DefaultTableModel table = (DefaultTableModel) HistoryTable.getModel();
         BookingController bookingcon = new BookingController();
         AuthenticationController au = new AuthenticationController();
@@ -29,24 +29,24 @@ public class PurchaseHistoryFrame extends javax.swing.JFrame {
             if(bookingcon.order.get(i).getUserid()==id){
                 if(bookingcon.order.get(i).getCinema().equals("CGV cinema")){
                     row[0]= bookingcon.order.get(i).getCinema();
-                    row[1]= addmovie.cgv.get(bookingcon.order.get(i).getMovieid()).getName();
+                    row[1]= movie.cgv.get(bookingcon.order.get(i).getMovieid()).getName();
                     row[2]= bookingcon.order.get(i).getChoosedseat();
-                    row[3]= addmovie.cgv.get(bookingcon.order.get(i).getMovieid()).getHalls();
-                    row[4]= addmovie.cgv.get(bookingcon.order.get(i).getMovieid()).getMovieTime();
+                    row[3]= movie.cgv.get(bookingcon.order.get(i).getMovieid()).getHalls();
+                    row[4]= movie.cgv.get(bookingcon.order.get(i).getMovieid()).getMovieTime();
                     table.addRow(row);
                 }else if(bookingcon.order.get(i).getCinema().equals("Galaxy cinema")){
                     row[0]= bookingcon.order.get(i).getCinema();
-                    row[1]= addmovie.galaxy.get(bookingcon.order.get(i).getMovieid()).getName();
+                    row[1]= movie.galaxy.get(bookingcon.order.get(i).getMovieid()).getName();
                     row[2]= bookingcon.order.get(i).getChoosedseat();
-                    row[3]= addmovie.galaxy.get(bookingcon.order.get(i).getMovieid()).getHalls();
-                    row[4]= addmovie.galaxy.get(bookingcon.order.get(i).getMovieid()).getMovieTime();
+                    row[3]= movie.galaxy.get(bookingcon.order.get(i).getMovieid()).getHalls();
+                    row[4]= movie.galaxy.get(bookingcon.order.get(i).getMovieid()).getMovieTime();
                     table.addRow(row);
                 }else if(bookingcon.order.get(i).getCinema().equals("Lotte cinema")){
                     row[0]= bookingcon.order.get(i).getCinema();
-                    row[1]= addmovie.lotte.get(bookingcon.order.get(i).getMovieid()).getName();
+                    row[1]= movie.lotte.get(bookingcon.order.get(i).getMovieid()).getName();
                     row[2]= bookingcon.order.get(i).getChoosedseat();
-                    row[3]= addmovie.lotte.get(bookingcon.order.get(i).getMovieid()).getHalls();
-                    row[4]= addmovie.lotte.get(bookingcon.order.get(i).getMovieid()).getMovieTime();
+                    row[3]= movie.lotte.get(bookingcon.order.get(i).getMovieid()).getHalls();
+                    row[4]= movie.lotte.get(bookingcon.order.get(i).getMovieid()).getMovieTime();
                     table.addRow(row);
                 }
             }

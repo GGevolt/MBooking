@@ -101,7 +101,7 @@ public class AddmovieFrame extends javax.swing.JFrame {
 
         jLabel7.setText("Ticket Price:");
 
-        jLabel8.setText("Seat Number:");
+        jLabel8.setText("Total Seat:");
 
         jLabel9.setText("Hall number:");
 
@@ -269,8 +269,7 @@ public class AddmovieFrame extends javax.swing.JFrame {
             if(Moviename.getText().isEmpty()||Director.getText().isEmpty()||TicketPrice.getText().isEmpty()|| SeatNumber.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null,"Pls enter all fields!");
             }else{
-                AddmovieController addmovie = new AddmovieController();
-                String regex = ".*\\d+.*";
+                MovieController movie = new MovieController();
                 String cinema = (String) Cinema.getSelectedItem();
                 String name = Moviename.getText().trim();
                 String director = Director.getText().trim();
@@ -280,26 +279,7 @@ public class AddmovieFrame extends javax.swing.JFrame {
                 int seatNumber = Integer.parseInt(SeatNumber.getText().trim());
                 String genre = (String) Genre.getSelectedItem();
                 int halls = (int) HallNumber.getValue();
-                if (director.matches(regex)) {
-                    JOptionPane.showMessageDialog(null,"Invalid input. Name cannot contain numbers.");
-                }else if(ticketPrice <=0 || seatNumber <=0){
-                    JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
-                }else if(cinema.equals("CGV cinema")){
-                    CGVcinema cgvCinema = new CGVcinema(name, year, director, genre, ticketPrice, seatNumber, halls, movieTime);
-                    addmovie.cgv.add(cgvCinema);
-                    addmovie.saveMovieToCgvCinemaFile();
-                    JOptionPane.showMessageDialog(null,"Saved Successfully to CGV cinema file!");
-                }else if(cinema.equals("Galaxy cinema")){
-                    Galaxycinema galaxyCinema = new Galaxycinema(name, year, director, genre, ticketPrice, seatNumber, halls, movieTime);
-                    addmovie.galaxy.add(galaxyCinema);
-                    addmovie.saveMovieToGalaxyCinemaFile();
-                    JOptionPane.showMessageDialog(null,"Saved Successfully to Galaxy cinema file!");
-                }else if(cinema.equals("Lotte cinama")){
-                    Lottecinema lotteCinema = new Lottecinema(name, year, director, genre, ticketPrice, seatNumber, halls, movieTime);
-                    addmovie.lotte.add(lotteCinema);
-                    addmovie.saveMovieToLotteCinemaFile();
-                    JOptionPane.showMessageDialog(null,"Saved Successfully to Lotte cinema file!");
-                }
+                movie.addmvoie(cinema, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
             }
         } catch (InputMismatchException e) {
             JOptionPane.showMessageDialog(null,"Invalid input format! Please enter the valid data.");

@@ -14,26 +14,26 @@ import javax.swing.*;
 public class EditmovieFrame extends javax.swing.JFrame {
     
     /**
-     * Creates new form addmovieFrame
+     * Creates new form movieFrame
      */
     public EditmovieFrame() {
         initComponents();
-        AddmovieController addmovie = new AddmovieController();
-        String[] cgvArray = new String[addmovie.cgv.size()];
-        for(int i =0;i<addmovie.cgv.size();i++){
-            cgvArray[i] = addmovie.cgv.get(i).getName();
+        MovieController movie = new MovieController();
+        String[] cgvArray = new String[movie.cgv.size()];
+        for(int i =0;i<movie.cgv.size();i++){
+            cgvArray[i] = movie.cgv.get(i).getName();
         }
         moviesInCgv.setModel(new javax.swing.DefaultComboBoxModel<>(cgvArray));
         moviesInCgv.setSelectedIndex(0);
-        String[] galaxyArray = new String[addmovie.galaxy.size()];
-        for(int i =0;i<addmovie.galaxy.size();i++){
-            galaxyArray[i] = addmovie.galaxy.get(i).getName();
+        String[] galaxyArray = new String[movie.galaxy.size()];
+        for(int i =0;i<movie.galaxy.size();i++){
+            galaxyArray[i] = movie.galaxy.get(i).getName();
         }
         moviesInGalaxy.setModel(new javax.swing.DefaultComboBoxModel<>(galaxyArray));
         moviesInGalaxy.setSelectedIndex(0);
-        String[] lotteArray = new String[addmovie.lotte.size()];
-        for(int i =0;i<addmovie.lotte.size();i++){
-            lotteArray[i] = addmovie.lotte.get(i).getName();
+        String[] lotteArray = new String[movie.lotte.size()];
+        for(int i =0;i<movie.lotte.size();i++){
+            lotteArray[i] = movie.lotte.get(i).getName();
         }
         moviesInLotte.setModel(new javax.swing.DefaultComboBoxModel<>(lotteArray));
         moviesInLotte.setSelectedIndex(0);
@@ -208,7 +208,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Release Year:");
 
-        jLabel8.setText("Seat Number:");
+        jLabel8.setText("Total Seat:");
 
         jLabel3.setText("Director:");
 
@@ -766,7 +766,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
             if(Moviename.getText().isEmpty()||Director.getText().isEmpty()||TicketPrice.getText().isEmpty()|| SeatNumber.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null,"Pls enter all fields!");
             }else{
-                    AddmovieController addmovie = new AddmovieController();
+                    MovieController movie = new MovieController();
                     int selectedIndex = moviesInCgv.getSelectedIndex();
                     String regex = ".*\\d+.*";
                     if (Director.getText().trim().matches(regex)) {
@@ -774,16 +774,15 @@ public class EditmovieFrame extends javax.swing.JFrame {
                     }else if(Double.parseDouble(TicketPrice.getText().trim()) <=0 || Integer.parseInt(SeatNumber.getText().trim()) <=0){
                         JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
                     }else{
-                        addmovie.cgv.get(selectedIndex).setName(Moviename.getText().trim());
-                        addmovie.cgv.get(selectedIndex).setDirector(Director.getText().trim());
-                        addmovie.cgv.get(selectedIndex).setGenre((String) Genre.getSelectedItem());
-                        addmovie.cgv.get(selectedIndex).setHalls((int) HallNumber.getValue());;
-                        addmovie.cgv.get(selectedIndex).setMovieTime((Date) MovieTime.getValue());;
-                        addmovie.cgv.get(selectedIndex).setReleaseYear((int) Year.getValue());;
-                        addmovie.cgv.get(selectedIndex).setTicketPrice(Double.parseDouble(TicketPrice.getText().trim()));;
-                        addmovie.cgv.get(selectedIndex).setSeatNumber(Integer.parseInt(SeatNumber.getText().trim()));;
-                        addmovie.saveMovieToCgvCinemaFile();
-                        JOptionPane.showMessageDialog(null,"Successfully edit CGV cinema file!");
+                        String name = Moviename.getText().trim();
+                        String director = Director.getText().trim();
+                        int year = (int) Year.getValue();
+                        Double ticketPrice = Double.parseDouble(TicketPrice.getText().trim());
+                        Date movieTime = (Date) MovieTime.getValue();
+                        int seatNumber = Integer.parseInt(SeatNumber.getText().trim());
+                        String genre = (String) Genre.getSelectedItem();
+                        int halls = (int) HallNumber.getValue();
+                        movie.editCGVMovie(selectedIndex, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
                         final EditmovieFrame editFrame = new EditmovieFrame();
                         editFrame.setVisible(true);
                         editFrame.repaint();
@@ -827,49 +826,49 @@ public class EditmovieFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_SeatNumber2ActionPerformed
 
     private void moviesInLotteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moviesInLotteActionPerformed
-        AddmovieController addmovie = new AddmovieController();
+        MovieController movie = new MovieController();
         int selectedIndex = moviesInLotte.getSelectedIndex();
-        Moviename2.setText(addmovie.lotte.get(selectedIndex).getName());
-        Director2.setText(addmovie.lotte.get(selectedIndex).getDirector());
-        TicketPrice2.setText(addmovie.lotte.get(selectedIndex).getTicketPrice()+"");
-        SeatNumber2.setText(addmovie.lotte.get(selectedIndex).getSeatNumber()+"");
-        Year2.setValue(addmovie.lotte.get(selectedIndex).getReleaseYear());
-        Genre2.setSelectedItem(addmovie.lotte.get(selectedIndex).getGenre());
-        MovieTime2.setValue(addmovie.lotte.get(selectedIndex).getMovieTime());
-        HallNumber2.setValue(addmovie.lotte.get(selectedIndex).getHalls());
+        Moviename2.setText(movie.lotte.get(selectedIndex).getName());
+        Director2.setText(movie.lotte.get(selectedIndex).getDirector());
+        TicketPrice2.setText(movie.lotte.get(selectedIndex).getTicketPrice()+"");
+        SeatNumber2.setText(movie.lotte.get(selectedIndex).getSeatNumber()+"");
+        Year2.setValue(movie.lotte.get(selectedIndex).getReleaseYear());
+        Genre2.setSelectedItem(movie.lotte.get(selectedIndex).getGenre());
+        MovieTime2.setValue(movie.lotte.get(selectedIndex).getMovieTime());
+        HallNumber2.setValue(movie.lotte.get(selectedIndex).getHalls());
     }//GEN-LAST:event_moviesInLotteActionPerformed
 
     private void moviesInCgvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moviesInCgvActionPerformed
-        AddmovieController addmovie = new AddmovieController();
+        MovieController movie = new MovieController();
         int selectedIndex = moviesInCgv.getSelectedIndex();
-        Moviename.setText(addmovie.cgv.get(selectedIndex).getName());
-        Director.setText(addmovie.cgv.get(selectedIndex).getDirector());
-        TicketPrice.setText(addmovie.cgv.get(selectedIndex).getTicketPrice()+"");
-        SeatNumber.setText(addmovie.cgv.get(selectedIndex).getSeatNumber()+"");
-        Year.setValue(addmovie.cgv.get(selectedIndex).getReleaseYear());
-        Genre.setSelectedItem(addmovie.cgv.get(selectedIndex).getGenre());
-        MovieTime.setValue(addmovie.cgv.get(selectedIndex).getMovieTime());
-        HallNumber.setValue(addmovie.cgv.get(selectedIndex).getHalls());
+        Moviename.setText(movie.cgv.get(selectedIndex).getName());
+        Director.setText(movie.cgv.get(selectedIndex).getDirector());
+        TicketPrice.setText(movie.cgv.get(selectedIndex).getTicketPrice()+"");
+        SeatNumber.setText(movie.cgv.get(selectedIndex).getSeatNumber()+"");
+        Year.setValue(movie.cgv.get(selectedIndex).getReleaseYear());
+        Genre.setSelectedItem(movie.cgv.get(selectedIndex).getGenre());
+        MovieTime.setValue(movie.cgv.get(selectedIndex).getMovieTime());
+        HallNumber.setValue(movie.cgv.get(selectedIndex).getHalls());
     }//GEN-LAST:event_moviesInCgvActionPerformed
 
     private void moviesInGalaxyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moviesInGalaxyActionPerformed
-        AddmovieController addmovie = new AddmovieController();
+        MovieController movie = new MovieController();
         int selectedIndex = moviesInGalaxy.getSelectedIndex();
-        Moviename1.setText(addmovie.galaxy.get(selectedIndex).getName());
-        Director1.setText(addmovie.galaxy.get(selectedIndex).getDirector());
-        TicketPrice1.setText(addmovie.galaxy.get(selectedIndex).getTicketPrice()+"");
-        SeatNumber1.setText(addmovie.galaxy.get(selectedIndex).getSeatNumber()+"");
-        Year1.setValue(addmovie.galaxy.get(selectedIndex).getReleaseYear());
-        Genre1.setSelectedItem(addmovie.galaxy.get(selectedIndex).getGenre());
-        MovieTime1.setValue(addmovie.galaxy.get(selectedIndex).getMovieTime());
-        HallNumber1.setValue(addmovie.galaxy.get(selectedIndex).getHalls());
+        Moviename1.setText(movie.galaxy.get(selectedIndex).getName());
+        Director1.setText(movie.galaxy.get(selectedIndex).getDirector());
+        TicketPrice1.setText(movie.galaxy.get(selectedIndex).getTicketPrice()+"");
+        SeatNumber1.setText(movie.galaxy.get(selectedIndex).getSeatNumber()+"");
+        Year1.setValue(movie.galaxy.get(selectedIndex).getReleaseYear());
+        Genre1.setSelectedItem(movie.galaxy.get(selectedIndex).getGenre());
+        MovieTime1.setValue(movie.galaxy.get(selectedIndex).getMovieTime());
+        HallNumber1.setValue(movie.galaxy.get(selectedIndex).getHalls());
     }//GEN-LAST:event_moviesInGalaxyActionPerformed
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-        AddmovieController addmovie = new AddmovieController();
+        MovieController movie = new MovieController();
         int selectedIndex = moviesInCgv.getSelectedIndex();
-        addmovie.cgv.remove(selectedIndex);
-        addmovie.saveMovieToCgvCinemaFile();
+        movie.cgv.remove(selectedIndex);
+        movie.saveMovieToCgvCinemaFile();
         JOptionPane.showMessageDialog(null,"Successfully deleted from CGV cinema file!");
         final EditmovieFrame editFrame = new EditmovieFrame();
         editFrame.setVisible(true);
@@ -878,10 +877,10 @@ public class EditmovieFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_DeleteActionPerformed
 
     private void Delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete1ActionPerformed
-        AddmovieController addmovie = new AddmovieController();
+        MovieController movie = new MovieController();
         int selectedIndex = moviesInGalaxy.getSelectedIndex();
-        addmovie.galaxy.remove(selectedIndex);
-        addmovie.saveMovieToGalaxyCinemaFile();
+        movie.galaxy.remove(selectedIndex);
+        movie.saveMovieToGalaxyCinemaFile();
         JOptionPane.showMessageDialog(null,"Successfully deleted from Galaxy cinema file!");
         final EditmovieFrame editFrame = new EditmovieFrame();
         editFrame.setVisible(true);
@@ -894,7 +893,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
             if(Moviename1.getText().isEmpty()||Director1.getText().isEmpty()||TicketPrice1.getText().isEmpty()|| SeatNumber1.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null,"Pls enter all fields!");
             }else{
-                    AddmovieController addmovie = new AddmovieController();
+                    MovieController movie = new MovieController();
                     int selectedIndex = moviesInGalaxy.getSelectedIndex();
                     String regex = ".*\\d+.*";
                     if (Director1.getText().trim().matches(regex)) {
@@ -902,16 +901,15 @@ public class EditmovieFrame extends javax.swing.JFrame {
                     }else if(Double.parseDouble(TicketPrice1.getText().trim()) <=0 || Integer.parseInt(SeatNumber1.getText().trim()) <=0){
                         JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
                     }else{
-                        addmovie.galaxy.get(selectedIndex).setName(Moviename1.getText().trim());
-                        addmovie.galaxy.get(selectedIndex).setDirector(Director1.getText().trim());
-                        addmovie.galaxy.get(selectedIndex).setGenre((String) Genre1.getSelectedItem());
-                        addmovie.galaxy.get(selectedIndex).setHalls((int) HallNumber1.getValue());
-                        addmovie.galaxy.get(selectedIndex).setMovieTime((Date) MovieTime1.getValue());
-                        addmovie.galaxy.get(selectedIndex).setReleaseYear((int) Year1.getValue());
-                        addmovie.galaxy.get(selectedIndex).setTicketPrice(Double.parseDouble(TicketPrice1.getText().trim()));
-                        addmovie.galaxy.get(selectedIndex).setSeatNumber(Integer.parseInt(SeatNumber1.getText().trim()));;
-                        addmovie.saveMovieToGalaxyCinemaFile();
-                        JOptionPane.showMessageDialog(null,"Successfully edit Galaxy cinema file!");
+                        String name = Moviename1.getText().trim();
+                        String director = Director1.getText().trim();
+                        int year = (int) Year1.getValue();
+                        Double ticketPrice = Double.parseDouble(TicketPrice1.getText().trim());
+                        Date movieTime = (Date) MovieTime1.getValue();
+                        int seatNumber = Integer.parseInt(SeatNumber1.getText().trim());
+                        String genre = (String) Genre1.getSelectedItem();
+                        int halls = (int) HallNumber1.getValue();
+                        movie.editGalaxyMovie(selectedIndex, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
                         final EditmovieFrame editFrame = new EditmovieFrame();
                         editFrame.setVisible(true);
                         editFrame.repaint();
@@ -927,10 +925,10 @@ public class EditmovieFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_Edit1ActionPerformed
 
     private void Delete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete2ActionPerformed
-        AddmovieController addmovie = new AddmovieController();
+        MovieController movie = new MovieController();
         int selectedIndex = moviesInLotte.getSelectedIndex();
-        addmovie.lotte.remove(selectedIndex);
-        addmovie.saveMovieToLotteCinemaFile();
+        movie.lotte.remove(selectedIndex);
+        movie.saveMovieToLotteCinemaFile();
         JOptionPane.showMessageDialog(null,"Successfully deleted from Lotte cinema file!");
         final EditmovieFrame editFrame = new EditmovieFrame();
         editFrame.setVisible(true);
@@ -943,7 +941,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
             if(Moviename2.getText().isEmpty()||Director2.getText().isEmpty()||TicketPrice2.getText().isEmpty()|| SeatNumber2.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null,"Pls enter all fields!");
             }else{
-                    AddmovieController addmovie = new AddmovieController();
+                    MovieController movie = new MovieController();
                     int selectedIndex = moviesInLotte.getSelectedIndex();
                     String regex = ".*\\d+.*";
                     if (Director2.getText().trim().matches(regex)) {
@@ -951,16 +949,15 @@ public class EditmovieFrame extends javax.swing.JFrame {
                     }else if(Double.parseDouble(TicketPrice2.getText().trim()) <=0 || Integer.parseInt(SeatNumber2.getText().trim()) <=0){
                         JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
                     }else{
-                        addmovie.lotte.get(selectedIndex).setName(Moviename2.getText().trim());
-                        addmovie.lotte.get(selectedIndex).setDirector(Director2.getText().trim());
-                        addmovie.lotte.get(selectedIndex).setGenre((String) Genre2.getSelectedItem());
-                        addmovie.lotte.get(selectedIndex).setHalls((int) HallNumber2.getValue());;
-                        addmovie.lotte.get(selectedIndex).setMovieTime((Date) MovieTime2.getValue());;
-                        addmovie.lotte.get(selectedIndex).setReleaseYear((int) Year2.getValue());;
-                        addmovie.lotte.get(selectedIndex).setTicketPrice(Double.parseDouble(TicketPrice2.getText().trim()));;
-                        addmovie.lotte.get(selectedIndex).setSeatNumber(Integer.parseInt(SeatNumber2.getText().trim()));;
-                        addmovie.saveMovieToLotteCinemaFile();;
-                        JOptionPane.showMessageDialog(null,"Successfully edit Lotte cinema file!");
+                        String name = Moviename2.getText().trim();
+                        String director = Director2.getText().trim();
+                        int year = (int) Year2.getValue();
+                        Double ticketPrice = Double.parseDouble(TicketPrice2.getText().trim());
+                        Date movieTime = (Date) MovieTime2.getValue();
+                        int seatNumber = Integer.parseInt(SeatNumber2.getText().trim());
+                        String genre = (String) Genre2.getSelectedItem();
+                        int halls = (int) HallNumber2.getValue();
+                        movie.editLotteMovie(selectedIndex, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
                         final EditmovieFrame editFrame = new EditmovieFrame();
                         editFrame.setVisible(true);
                         editFrame.repaint();

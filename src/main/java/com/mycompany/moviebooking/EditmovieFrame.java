@@ -5,7 +5,6 @@
 package com.mycompany.moviebooking;
 import java.util.Date;
 import java.util.InputMismatchException;
-
 import javax.swing.*;
 /**
  *
@@ -867,9 +866,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         MovieController movie = new MovieController();
         int selectedIndex = moviesInCgv.getSelectedIndex();
-        movie.cgv.remove(selectedIndex);
-        movie.saveMovieToCgvCinemaFile();
-        JOptionPane.showMessageDialog(null,"Successfully deleted from CGV cinema file!");
+        movie.deleteCGVMovie(selectedIndex);
         final EditmovieFrame editFrame = new EditmovieFrame();
         editFrame.setVisible(true);
         editFrame.repaint();
@@ -879,9 +876,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
     private void Delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete1ActionPerformed
         MovieController movie = new MovieController();
         int selectedIndex = moviesInGalaxy.getSelectedIndex();
-        movie.galaxy.remove(selectedIndex);
-        movie.saveMovieToGalaxyCinemaFile();
-        JOptionPane.showMessageDialog(null,"Successfully deleted from Galaxy cinema file!");
+        movie.deleteGalaxyMovie(selectedIndex);
         final EditmovieFrame editFrame = new EditmovieFrame();
         editFrame.setVisible(true);
         editFrame.repaint();
@@ -927,9 +922,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
     private void Delete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete2ActionPerformed
         MovieController movie = new MovieController();
         int selectedIndex = moviesInLotte.getSelectedIndex();
-        movie.lotte.remove(selectedIndex);
-        movie.saveMovieToLotteCinemaFile();
-        JOptionPane.showMessageDialog(null,"Successfully deleted from Lotte cinema file!");
+        movie.deleteLotteMovie(selectedIndex);
         final EditmovieFrame editFrame = new EditmovieFrame();
         editFrame.setVisible(true);
         editFrame.repaint();
@@ -1010,6 +1003,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         new LoginFrame().setVisible(true);
         this.dispose();
+        JOptionPane.showMessageDialog(null,"Log out Successfull!");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**

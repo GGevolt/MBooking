@@ -2,7 +2,6 @@ package com.mycompany.moviebooking;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import javax.swing.*;
 import java.io.*;
 

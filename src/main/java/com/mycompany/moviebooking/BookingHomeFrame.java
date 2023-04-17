@@ -1153,6 +1153,7 @@ public class BookingHomeFrame extends javax.swing.JFrame {
         au.deleteUserId();
         new LoginFrame().setVisible(true);
         this.dispose();
+        JOptionPane.showMessageDialog(null,"Log out Successfull!");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void MovienameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MovienameActionPerformed

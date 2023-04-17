@@ -4,9 +4,7 @@
  */
 package com.mycompany.moviebooking;
 
-
 import java.util.InputMismatchException;
-
 import javax.swing.JOptionPane;
 
 /**

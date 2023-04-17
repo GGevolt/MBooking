@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.swing.*;
 import java.io.*;
 
@@ -176,5 +175,24 @@ public class MovieController implements Serializable  {
         lotte.get(selectedIndex).setSeatNumber(seatNumber);;
         saveMovieToLotteCinemaFile();
         JOptionPane.showMessageDialog(null,"Successfully edit Lotte cinema file!");
+    }
+    
+
+    public void deleteCGVMovie(int selectedIndex){
+        cgv.remove(selectedIndex);
+        saveMovieToCgvCinemaFile();
+        JOptionPane.showMessageDialog(null,"Successfully deleted from CGV cinema file!");
+    }
+
+    public void deleteGalaxyMovie(int selectedIndex){
+        galaxy.remove(selectedIndex);
+        saveMovieToGalaxyCinemaFile();
+        JOptionPane.showMessageDialog(null,"Successfully deleted from Galaxy cinema file!");
+    }
+
+    public void deleteLotteMovie(int selectedIndex){
+        lotte.remove(selectedIndex);
+        saveMovieToLotteCinemaFile();
+        JOptionPane.showMessageDialog(null,"Successfully deleted from Lotte cinema file!");
     }
 }

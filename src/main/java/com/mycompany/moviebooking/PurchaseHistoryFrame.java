@@ -3,17 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.moviebooking;
-
-
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author ADMIN
  */
 public class PurchaseHistoryFrame extends javax.swing.JFrame {
-
- 
     /**
      * Creates new form PurchaseHistoryFrame
      */
@@ -158,6 +154,7 @@ public class PurchaseHistoryFrame extends javax.swing.JFrame {
         au.deleteUserId();
         new LoginFrame().setVisible(true);
         this.dispose();
+        JOptionPane.showMessageDialog(null,"Log out Successfull!");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed

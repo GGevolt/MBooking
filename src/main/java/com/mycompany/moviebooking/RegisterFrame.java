@@ -117,7 +117,7 @@ public class RegisterFrame extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("File");
+        jMenu1.setText("Seratina");
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Account");

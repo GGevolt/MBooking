@@ -95,7 +95,7 @@ public class PurchaseHistoryFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
         jLabel1.setText("Purchased History:");
 
-        jMenu1.setText("File");
+        jMenu1.setText("Seratina");
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Booking Movie");

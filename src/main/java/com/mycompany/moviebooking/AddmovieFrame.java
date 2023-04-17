@@ -123,7 +123,7 @@ public class AddmovieFrame extends javax.swing.JFrame {
 
         HallNumber.setModel(new javax.swing.SpinnerNumberModel(1, 1, 8, 1));
 
-        jMenu1.setText("File");
+        jMenu1.setText("Seratina");
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");

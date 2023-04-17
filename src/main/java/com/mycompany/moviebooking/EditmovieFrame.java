@@ -708,7 +708,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
 
         getContentPane().add(MainPanel, java.awt.BorderLayout.CENTER);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Seratina");
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");

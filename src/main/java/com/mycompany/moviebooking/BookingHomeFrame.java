@@ -1024,7 +1024,7 @@ public class BookingHomeFrame extends javax.swing.JFrame {
 
         getContentPane().add(CinemaButton, java.awt.BorderLayout.PAGE_START);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Seratina");
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Purchase History");

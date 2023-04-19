@@ -280,7 +280,7 @@ public class AddmovieFrame extends javax.swing.JFrame {
                 int halls = (int) HallNumber.getValue();
                 movie.addmvoie(cinema, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
             }
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null,"Invalid input format! Please enter the valid data.");
         } catch (Exception f){
             JOptionPane.showMessageDialog(null, "Error");

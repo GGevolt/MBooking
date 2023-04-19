@@ -767,28 +767,23 @@ public class EditmovieFrame extends javax.swing.JFrame {
             }else{
                     MovieController movie = new MovieController();
                     int selectedIndex = moviesInCgv.getSelectedIndex();
-                    String regex = ".*\\d+.*";
-                    if (Director.getText().trim().matches(regex)) {
-                        JOptionPane.showMessageDialog(null,"Invalid input. Name cannot contain numbers.");
-                    }else if(Double.parseDouble(TicketPrice.getText().trim()) <=0 || Integer.parseInt(SeatNumber.getText().trim()) <=0){
-                        JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
-                    }else{
-                        String name = Moviename.getText().trim();
-                        String director = Director.getText().trim();
-                        int year = (int) Year.getValue();
-                        Double ticketPrice = Double.parseDouble(TicketPrice.getText().trim());
-                        Date movieTime = (Date) MovieTime.getValue();
-                        int seatNumber = Integer.parseInt(SeatNumber.getText().trim());
-                        String genre = (String) Genre.getSelectedItem();
-                        int halls = (int) HallNumber.getValue();
-                        movie.editCGVMovie(selectedIndex, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
+                    String name = Moviename.getText().trim();
+                    String director = Director.getText().trim();
+                    int year = (int) Year.getValue();
+                    Double ticketPrice = Double.parseDouble(TicketPrice.getText().trim());
+                    Date movieTime = (Date) MovieTime.getValue();
+                    int seatNumber = Integer.parseInt(SeatNumber.getText().trim());
+                    String genre = (String) Genre.getSelectedItem();
+                    int halls = (int) HallNumber.getValue();
+                    int flag = movie.editCGVMovie(selectedIndex, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
+                    if(flag==1){
                         final EditmovieFrame editFrame = new EditmovieFrame();
                         editFrame.setVisible(true);
                         editFrame.repaint();
                         this.dispose();
                     }
             }
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null,"Invalid input format! Please enter the valid data.");
         } catch (Exception f){
             JOptionPane.showMessageDialog(null, "Error");
@@ -890,26 +885,22 @@ public class EditmovieFrame extends javax.swing.JFrame {
             }else{
                     MovieController movie = new MovieController();
                     int selectedIndex = moviesInGalaxy.getSelectedIndex();
-                    String regex = ".*\\d+.*";
-                    if (Director1.getText().trim().matches(regex)) {
-                        JOptionPane.showMessageDialog(null,"Invalid input. Name cannot contain numbers.");
-                    }else if(Double.parseDouble(TicketPrice1.getText().trim()) <=0 || Integer.parseInt(SeatNumber1.getText().trim()) <=0){
-                        JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
-                    }else{
-                        String name = Moviename1.getText().trim();
-                        String director = Director1.getText().trim();
-                        int year = (int) Year1.getValue();
-                        Double ticketPrice = Double.parseDouble(TicketPrice1.getText().trim());
-                        Date movieTime = (Date) MovieTime1.getValue();
-                        int seatNumber = Integer.parseInt(SeatNumber1.getText().trim());
-                        String genre = (String) Genre1.getSelectedItem();
-                        int halls = (int) HallNumber1.getValue();
-                        movie.editGalaxyMovie(selectedIndex, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
+                    String name = Moviename1.getText().trim();
+                    String director = Director1.getText().trim();
+                    int year = (int) Year1.getValue();
+                    Double ticketPrice = Double.parseDouble(TicketPrice1.getText().trim());
+                    Date movieTime = (Date) MovieTime1.getValue();
+                    int seatNumber = Integer.parseInt(SeatNumber1.getText().trim());
+                    String genre = (String) Genre1.getSelectedItem();
+                    int halls = (int) HallNumber1.getValue();
+                    int flag= movie.editGalaxyMovie(selectedIndex, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
+                    if(flag==1){
                         final EditmovieFrame editFrame = new EditmovieFrame();
                         editFrame.setVisible(true);
                         editFrame.repaint();
                         this.dispose();
                     }
+                    
             }
         } catch (InputMismatchException e) {
             JOptionPane.showMessageDialog(null,"Invalid input format! Please enter the valid data.");
@@ -936,21 +927,16 @@ public class EditmovieFrame extends javax.swing.JFrame {
             }else{
                     MovieController movie = new MovieController();
                     int selectedIndex = moviesInLotte.getSelectedIndex();
-                    String regex = ".*\\d+.*";
-                    if (Director2.getText().trim().matches(regex)) {
-                        JOptionPane.showMessageDialog(null,"Invalid input. Name cannot contain numbers.");
-                    }else if(Double.parseDouble(TicketPrice2.getText().trim()) <=0 || Integer.parseInt(SeatNumber2.getText().trim()) <=0){
-                        JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
-                    }else{
-                        String name = Moviename2.getText().trim();
-                        String director = Director2.getText().trim();
-                        int year = (int) Year2.getValue();
-                        Double ticketPrice = Double.parseDouble(TicketPrice2.getText().trim());
-                        Date movieTime = (Date) MovieTime2.getValue();
-                        int seatNumber = Integer.parseInt(SeatNumber2.getText().trim());
-                        String genre = (String) Genre2.getSelectedItem();
-                        int halls = (int) HallNumber2.getValue();
-                        movie.editLotteMovie(selectedIndex, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
+                    String name = Moviename2.getText().trim();
+                    String director = Director2.getText().trim();
+                    int year = (int) Year2.getValue();
+                    Double ticketPrice = Double.parseDouble(TicketPrice2.getText().trim());
+                    Date movieTime = (Date) MovieTime2.getValue();
+                    int seatNumber = Integer.parseInt(SeatNumber2.getText().trim());
+                    String genre = (String) Genre2.getSelectedItem();
+                    int halls = (int) HallNumber2.getValue();
+                    int flag = movie.editLotteMovie(selectedIndex, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
+                    if(flag==1){
                         final EditmovieFrame editFrame = new EditmovieFrame();
                         editFrame.setVisible(true);
                         editFrame.repaint();

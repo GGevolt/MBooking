@@ -116,65 +116,144 @@ public class MovieController implements Serializable  {
 
     public void addmvoie(String cinema, String name, String director, int year, Double ticketPrice, Date movieTime, int seatNumber, String genre,int halls){
         String regex = ".*\\d+.*";
+        int flag =0;
         if (director.matches(regex)) {
             JOptionPane.showMessageDialog(null,"Invalid input. Name cannot contain numbers.");
         }else if(ticketPrice <=0 || seatNumber <=0){
             JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
         }else if(cinema.equals("CGV cinema")){
-            CGVcinema cgvCinema = new CGVcinema(name, year, director, genre, ticketPrice, seatNumber, halls, movieTime);
-            cgv.add(cgvCinema);
-            saveMovieToCgvCinemaFile();
-            JOptionPane.showMessageDialog(null,"Saved Successfully to CGV cinema file!");
+            for(int i=0;i<cgv.size();i++){
+                if(cgv.get(i).getMovieTime().equals(movieTime) && cgv.get(i).getHalls()==halls){
+                    JOptionPane.showMessageDialog(null,"There's already a movie schedule at this hall.\nPls choose again!");
+                    flag=1;
+                }
+            }
+            if(flag==0){
+                CGVcinema cgvCinema = new CGVcinema(name, year, director, genre, ticketPrice, seatNumber, halls, movieTime);
+                cgv.add(cgvCinema);
+                saveMovieToCgvCinemaFile();
+                JOptionPane.showMessageDialog(null,"Saved Successfully to CGV cinema file!");
+            }
         }else if(cinema.equals("Galaxy cinema")){
-            Galaxycinema galaxyCinema = new Galaxycinema(name, year, director, genre, ticketPrice, seatNumber, halls, movieTime);
-            galaxy.add(galaxyCinema);
-            saveMovieToGalaxyCinemaFile();
-            JOptionPane.showMessageDialog(null,"Saved Successfully to Galaxy cinema file!");
+            for(int i=0;i<galaxy.size();i++){
+                if(galaxy.get(i).getMovieTime().equals(movieTime) && galaxy.get(i).getHalls()==halls){
+                    JOptionPane.showMessageDialog(null,"There's already a movie schedule at this hall.\nPls choose again!");
+                    flag=1;
+                }
+            }
+            if(flag==0){
+                Galaxycinema galaxyCinema = new Galaxycinema(name, year, director, genre, ticketPrice, seatNumber, halls, movieTime);
+                galaxy.add(galaxyCinema);
+                saveMovieToGalaxyCinemaFile();
+                JOptionPane.showMessageDialog(null,"Saved Successfully to Galaxy cinema file!");
+            }
         }else if(cinema.equals("Lotte cinama")){
-            Lottecinema lotteCinema = new Lottecinema(name, year, director, genre, ticketPrice, seatNumber, halls, movieTime);
-            lotte.add(lotteCinema);
-            saveMovieToLotteCinemaFile();
-            JOptionPane.showMessageDialog(null,"Saved Successfully to Lotte cinema file!");
+            for(int i=0;i<lotte.size();i++){
+                if(lotte.get(i).getMovieTime().equals(movieTime) && lotte.get(i).getHalls()==halls){
+                    JOptionPane.showMessageDialog(null,"There's already a movie schedule at this hall.\nPls choose again!");
+                    flag=1;
+                }
+            }
+            if(flag==0){
+                Lottecinema lotteCinema = new Lottecinema(name, year, director, genre, ticketPrice, seatNumber, halls, movieTime);
+                lotte.add(lotteCinema);
+                saveMovieToLotteCinemaFile();
+                JOptionPane.showMessageDialog(null,"Saved Successfully to Lotte cinema file!");
+            }
         }
     }
 
-    public void editCGVMovie(int selectedIndex, String name, String director, int year, Double ticketPrice, Date movieTime, int seatNumber, String genre,int halls ){
-        cgv.get(selectedIndex).setName(name);
-        cgv.get(selectedIndex).setDirector(director);
-        cgv.get(selectedIndex).setGenre(genre);
-        cgv.get(selectedIndex).setHalls(halls);;
-        cgv.get(selectedIndex).setMovieTime(movieTime);;
-        cgv.get(selectedIndex).setReleaseYear(year);;
-        cgv.get(selectedIndex).setTicketPrice(ticketPrice);;
-        cgv.get(selectedIndex).setSeatNumber(seatNumber);;
-        saveMovieToCgvCinemaFile();
-        JOptionPane.showMessageDialog(null,"Successfully edit CGV cinema file!");
+    public int editCGVMovie(int selectedIndex, String name, String director, int year, Double ticketPrice, Date movieTime, int seatNumber, String genre,int halls ){
+        String regex = ".*\\d+.*";
+        int flag =0;
+        if (director.matches(regex)) {
+            JOptionPane.showMessageDialog(null,"Invalid input. Name cannot contain numbers.");
+        }else if(ticketPrice <=0 || seatNumber <=0){
+            JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
+        }else{
+            for(int i=0;i<cgv.size();i++){
+                if(cgv.get(i).getMovieTime().equals(movieTime) && cgv.get(i).getHalls()==halls){
+                    JOptionPane.showMessageDialog(null,"There's already a movie schedule at this hall.\nPls choose again!");
+                    flag=1;
+                }
+            }
+            if(flag==0){
+                cgv.get(selectedIndex).setName(name);
+                cgv.get(selectedIndex).setDirector(director);
+                cgv.get(selectedIndex).setGenre(genre);
+                cgv.get(selectedIndex).setHalls(halls);
+                cgv.get(selectedIndex).setMovieTime(movieTime);
+                cgv.get(selectedIndex).setReleaseYear(year);
+                cgv.get(selectedIndex).setTicketPrice(ticketPrice);
+                cgv.get(selectedIndex).setSeatNumber(seatNumber);
+                saveMovieToCgvCinemaFile();
+                JOptionPane.showMessageDialog(null,"Successfully edit CGV cinema file!");
+                return 1;
+            }
+        }
+        return 0;
     }
 
-    public void editGalaxyMovie(int selectedIndex, String name, String director, int year, Double ticketPrice, Date movieTime, int seatNumber, String genre,int halls ){
-        galaxy.get(selectedIndex).setName(name);
-        galaxy.get(selectedIndex).setDirector(director);
-        galaxy.get(selectedIndex).setGenre(genre);
-        galaxy.get(selectedIndex).setHalls(halls);;
-        galaxy.get(selectedIndex).setMovieTime(movieTime);;
-        galaxy.get(selectedIndex).setReleaseYear(year);;
-        galaxy.get(selectedIndex).setTicketPrice(ticketPrice);;
-        galaxy.get(selectedIndex).setSeatNumber(seatNumber);;
-        saveMovieToGalaxyCinemaFile();
-        JOptionPane.showMessageDialog(null,"Successfully edit Galaxy cinema file!");
+    public int editGalaxyMovie(int selectedIndex, String name, String director, int year, Double ticketPrice, Date movieTime, int seatNumber, String genre,int halls ){
+        String regex = ".*\\d+.*";
+        int flag =0;
+        if (director.matches(regex)) {
+            JOptionPane.showMessageDialog(null,"Invalid input. Name cannot contain numbers.");
+        }else if(ticketPrice <=0 || seatNumber <=0){
+            JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
+        }else{
+            for(int i=0;i<galaxy.size();i++){
+                if(galaxy.get(i).getMovieTime().equals(movieTime) && galaxy.get(i).getHalls()==halls){
+                    JOptionPane.showMessageDialog(null,"There's already a movie schedule at this hall.\nPls choose again!");
+                    flag=1;
+                }
+            }
+            if(flag==0){
+                galaxy.get(selectedIndex).setName(name);
+                galaxy.get(selectedIndex).setDirector(director);
+                galaxy.get(selectedIndex).setGenre(genre);
+                galaxy.get(selectedIndex).setHalls(halls);
+                galaxy.get(selectedIndex).setMovieTime(movieTime);
+                galaxy.get(selectedIndex).setReleaseYear(year);
+                galaxy.get(selectedIndex).setTicketPrice(ticketPrice);
+                galaxy.get(selectedIndex).setSeatNumber(seatNumber);
+                saveMovieToGalaxyCinemaFile();
+                JOptionPane.showMessageDialog(null,"Successfully edit Galaxy cinema file!");
+                return 1;
+            }
+        }
+        return 0;
     }
 
-    public void editLotteMovie(int selectedIndex, String name, String director, int year, Double ticketPrice, Date movieTime, int seatNumber, String genre,int halls ){
-        lotte.get(selectedIndex).setName(name);
-        lotte.get(selectedIndex).setDirector(director);
-        lotte.get(selectedIndex).setGenre(genre);
-        lotte.get(selectedIndex).setHalls(halls);;
-        lotte.get(selectedIndex).setMovieTime(movieTime);;
-        lotte.get(selectedIndex).setReleaseYear(year);;
-        lotte.get(selectedIndex).setTicketPrice(ticketPrice);;
-        lotte.get(selectedIndex).setSeatNumber(seatNumber);;
-        saveMovieToLotteCinemaFile();
-        JOptionPane.showMessageDialog(null,"Successfully edit Lotte cinema file!");
+    public int editLotteMovie(int selectedIndex, String name, String director, int year, Double ticketPrice, Date movieTime, int seatNumber, String genre,int halls ){
+        String regex = ".*\\d+.*";
+        int flag =0;
+        if (director.matches(regex)) {
+            JOptionPane.showMessageDialog(null,"Invalid input. Name cannot contain numbers.");
+        }else if(ticketPrice <=0 || seatNumber <=0){
+            JOptionPane.showMessageDialog(null,"Pls recheck the ticket price or seat number value!");
+        }else{
+            for(int i=0;i<lotte.size();i++){
+                if(lotte.get(i).getMovieTime().equals(movieTime) && lotte.get(i).getHalls()==halls){
+                    JOptionPane.showMessageDialog(null,"There's already a movie schedule at this hall.\nPls choose again!");
+                    flag=1;
+                }
+            }
+            if(flag==0){
+                lotte.get(selectedIndex).setName(name);
+                lotte.get(selectedIndex).setDirector(director);
+                lotte.get(selectedIndex).setGenre(genre);
+                lotte.get(selectedIndex).setHalls(halls);
+                lotte.get(selectedIndex).setMovieTime(movieTime);
+                lotte.get(selectedIndex).setReleaseYear(year);
+                lotte.get(selectedIndex).setTicketPrice(ticketPrice);
+                lotte.get(selectedIndex).setSeatNumber(seatNumber);
+                saveMovieToLotteCinemaFile();
+                JOptionPane.showMessageDialog(null,"Successfully edit Lotte cinema file!");
+                return 1;
+            }
+        }
+        return 0;
     }
     
 

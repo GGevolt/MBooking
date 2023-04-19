@@ -230,7 +230,7 @@ public class RegisterFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-            if(Username.getText().isEmpty()||Password.getText().isEmpty()){
+            if(Username.getText().isEmpty()||Password.getText().isEmpty()||Confirm.getText().trim().isEmpty()||Email.getText().trim().isEmpty()||FirstName.getText().trim().isEmpty()||LastName.getText().trim().isEmpty()){
                 JOptionPane.showMessageDialog(null,"Pls enter all fields!");
             }else{
                 String regex1 = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";

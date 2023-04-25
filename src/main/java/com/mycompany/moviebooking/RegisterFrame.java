@@ -254,8 +254,6 @@ public class RegisterFrame extends javax.swing.JFrame {
                     }
                 }
             }
-        } catch (InputMismatchException e) {
-            JOptionPane.showMessageDialog(null,"Invalid input format!\n Please enter the valid data.");
         } catch (Exception f){
             JOptionPane.showMessageDialog(null, "Error");
             System.out.println(f.getMessage());

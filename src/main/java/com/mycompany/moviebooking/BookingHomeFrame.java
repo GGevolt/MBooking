@@ -25,15 +25,15 @@ public class BookingHomeFrame extends javax.swing.JFrame {
         MovieController movie = new MovieController();
         DefaultTableModel table1 = (DefaultTableModel) CGVjTable.getModel();
         for(int i =0;i<movie.cgv.size();i++){
-            table1.addRow(new Object[]{movie.cgv.get(i).getName(),movie.cgv.get(i).getGenre(),movie.cgv.get(i).getDirector(),movie.cgv.get(i).getReleaseYear(),movie.cgv.get(i).getMovieTime()});
+            table1.addRow(new Object[]{movie.cgv.get(i).getName(),movie.cgv.get(i).getGenre(),movie.cgv.get(i).getDirector(),movie.cgv.get(i).getReleaseYear(),movie.cgv.get(i).getHalls(),movie.cgv.get(i).getMovieTime()});
         }
         DefaultTableModel table2 = (DefaultTableModel) GalaxyjTable.getModel();
         for(int i =0;i<movie.galaxy.size();i++){
-            table2.addRow(new Object[]{movie.galaxy.get(i).getName(),movie.galaxy.get(i).getGenre(),movie.galaxy.get(i).getDirector(),movie.galaxy.get(i).getReleaseYear(),movie.galaxy.get(i).getMovieTime()});
+            table2.addRow(new Object[]{movie.galaxy.get(i).getName(),movie.galaxy.get(i).getGenre(),movie.galaxy.get(i).getDirector(),movie.galaxy.get(i).getReleaseYear(),movie.galaxy.get(i).getHalls(),movie.galaxy.get(i).getMovieTime()});
         }
         DefaultTableModel table3 = (DefaultTableModel) LotteTable.getModel();
         for(int i =0;i<movie.lotte.size();i++){
-            table3.addRow(new Object[]{movie.lotte.get(i).getName(),movie.lotte.get(i).getGenre(),movie.lotte.get(i).getDirector(),movie.lotte.get(i).getReleaseYear(),movie.lotte.get(i).getMovieTime()});
+            table3.addRow(new Object[]{movie.lotte.get(i).getName(),movie.lotte.get(i).getGenre(),movie.lotte.get(i).getDirector(),movie.lotte.get(i).getReleaseYear(),movie.lotte.get(i).getHalls(),movie.lotte.get(i).getMovieTime()});
         }
         
         
@@ -158,11 +158,11 @@ public class BookingHomeFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Movie Name", "Genre", "Director", "Release Year", "Movie Time"
+                "Movie Name", "Genre", "Director", "Release Year", "Hall", "Movie Time"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -424,11 +424,11 @@ public class BookingHomeFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Movie Name", "Genre", "Director", "Release Year", "Movie Time"
+                "Movie Name", "Genre", "Director", "Release Year","Hall", "Movie Time"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -695,11 +695,11 @@ public class BookingHomeFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Movie Name", "Genre", "Director", "Release Year", "Movie Time"
+                "Movie Name", "Genre", "Director", "Release Year", "Hall", "Movie Time"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false,false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1123,12 +1123,17 @@ public class BookingHomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_LotteTableKeyReleased
 
     private void CGVjTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CGVjTableMouseClicked
-       int row = CGVjTable.getSelectedRow();
-       int max=0;
-       MovieController movie = new MovieController();
-       DefaultTableModel table = (DefaultTableModel) CGVjTable.getModel();
+        int max=0;
+        MovieController movie = new MovieController();
+        DefaultTableModel table = (DefaultTableModel) CGVjTable.getModel();
+        int row = CGVjTable.getSelectedRow();
+        int modelRow = CGVjTable.convertRowIndexToModel(row);
+        Object[] rowData = new Object[table.getColumnCount()];
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            rowData[i] = table.getValueAt(modelRow, i);
+        }
         for(int i =0;i<movie.cgv.size();i++){
-            if(movie.cgv.get(i).getName().equals(table.getValueAt(row, 0).toString()) && movie.cgv.get(i).getMovieTime().equals(table.getValueAt(row, 4))){
+            if(movie.cgv.get(i).getName().equals(rowData[0]) && movie.cgv.get(i).getMovieTime().equals(rowData[5]) && movie.cgv.get(i).getHalls()== (int) rowData[4]){
                 Moviename.setText(movie.cgv.get(i).getName());
                 Director.setText(movie.cgv.get(i).getDirector());
                 TicketPrice.setText(movie.cgv.get(i).getTicketPrice()+"");
@@ -1140,11 +1145,15 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                 max = movie.cgv.get(i).getSeatNumber();
             }
         }
-        String[] priceArray = new String[max];
+        Tprice.setText(null);
+        String[] seatArray = new String[max];
         for(int i =0;i<max;i++){
-            priceArray[i] = (i+1)+"";
+            seatArray[i] = (i+1)+"";
         }
-        NSeat.setModel(new javax.swing.DefaultComboBoxModel<>(priceArray));
+        if(max==0){
+            JOptionPane.showMessageDialog(null,"Sorry, this movie is out of ticket!");
+        }
+        NSeat.setModel(new javax.swing.DefaultComboBoxModel<>(seatArray));
         
     }//GEN-LAST:event_CGVjTableMouseClicked
 
@@ -1237,7 +1246,12 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                     int selectedIndex =Integer.parseInt((String) Nseat2.getSelectedItem());
                     DefaultTableModel table = (DefaultTableModel) LotteTable.getModel();
                     BookingController booking = new BookingController();
-                    int flag = booking.BookingLotteMovie(selectedIndex, row, table);
+                    int modelRow = LotteTable.convertRowIndexToModel(row);
+                    Object[] rowData = new Object[table.getColumnCount()];
+                    for (int i = 0; i < table.getColumnCount(); i++) {
+                        rowData[i] = table.getValueAt(modelRow, i);
+                    }
+                    int flag = booking.BookingLotteMovie(selectedIndex, rowData);
                     if (flag == 1){
                         final BookingHomeFrame Frame = new BookingHomeFrame();
                         Frame.setVisible(true);
@@ -1262,7 +1276,12 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                     int selectedIndex =Integer.parseInt((String) NSeat.getSelectedItem());
                     DefaultTableModel table = (DefaultTableModel) CGVjTable.getModel();
                     BookingController booking = new BookingController();
-                    int flag = booking.BookingCGVMovie(selectedIndex, row, table);
+                    int modelRow = CGVjTable.convertRowIndexToModel(row);
+                    Object[] rowData = new Object[table.getColumnCount()];
+                    for (int i = 0; i < table.getColumnCount(); i++) {
+                        rowData[i] = table.getValueAt(modelRow, i);
+                    }
+                    int flag = booking.BookingCGVMovie(selectedIndex, rowData);
                     if (flag == 1){
                         final BookingHomeFrame Frame = new BookingHomeFrame();
                         Frame.setVisible(true);
@@ -1283,8 +1302,13 @@ public class BookingHomeFrame extends javax.swing.JFrame {
         int row = LotteTable.getSelectedRow();
         MovieController movie = new MovieController();
         DefaultTableModel table = (DefaultTableModel) LotteTable.getModel();
+        int modelRow = LotteTable.convertRowIndexToModel(row);
+        Object[] rowData = new Object[table.getColumnCount()];
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            rowData[i] = table.getValueAt(modelRow, i);
+        }
         for(int i =0;i<movie.lotte.size();i++){
-            if(movie.lotte.get(i).getName().equals(table.getValueAt(row, 0).toString()) && movie.lotte.get(i).getMovieTime().equals(table.getValueAt(row, 4))){
+            if(movie.lotte.get(i).getName().equals(rowData[0]) && movie.lotte.get(i).getMovieTime().equals(rowData[5]) && movie.lotte.get(i).getHalls()== (int) rowData[4]){
                 Moviename2.setText(movie.lotte.get(i).getName());
                 Director2.setText(movie.lotte.get(i).getDirector());
                 TicketPrice2.setText(movie.lotte.get(i).getTicketPrice()+"");
@@ -1296,11 +1320,15 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                 max = movie.lotte.get(i).getSeatNumber();
             }
         }
-        String[] priceArray = new String[max];
+        Tprice2.setText(null);
+        String[] seatArray = new String[max];
         for(int i =0;i<max;i++){
-            priceArray[i] = (i+1)+"";
+            seatArray[i] = (i+1)+"";
         }
-        Nseat2.setModel(new javax.swing.DefaultComboBoxModel<>(priceArray));
+        if(max==0){
+            JOptionPane.showMessageDialog(null,"Sorry, this movie is out of ticket!");
+        }
+        Nseat2.setModel(new javax.swing.DefaultComboBoxModel<>(seatArray));
     }//GEN-LAST:event_LotteTableMouseClicked
 
     private void GalaxyjTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GalaxyjTableMouseClicked
@@ -1308,8 +1336,13 @@ public class BookingHomeFrame extends javax.swing.JFrame {
         int row = GalaxyjTable.getSelectedRow();
         MovieController movie = new MovieController();
         DefaultTableModel table = (DefaultTableModel) GalaxyjTable.getModel();
+        int modelRow = GalaxyjTable.convertRowIndexToModel(row);
+        Object[] rowData = new Object[table.getColumnCount()];
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            rowData[i] = table.getValueAt(modelRow, i);
+        }
         for(int i =0;i<movie.galaxy.size();i++){
-            if(movie.galaxy.get(i).getName().equals(table.getValueAt(row, 0).toString()) && movie.galaxy.get(i).getMovieTime().equals(table.getValueAt(row, 4))){
+            if(movie.galaxy.get(i).getName().equals(rowData[0]) && movie.galaxy.get(i).getMovieTime().equals(rowData[5]) && movie.galaxy.get(i).getHalls()== (int) rowData[4]){
                 Moviename1.setText(movie.galaxy.get(i).getName());
                 Director1.setText(movie.galaxy.get(i).getDirector());
                 TicketPrice1.setText(movie.galaxy.get(i).getTicketPrice()+"");
@@ -1321,11 +1354,15 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                 max = movie.galaxy.get(i).getSeatNumber();
             }
         }
-        String[] priceArray = new String[max];
+        Tprice1.setText(null);
+        String[] seatArray = new String[max];
         for(int i =0;i<max;i++){
-            priceArray[i] = (i+1)+"";
+            seatArray[i] = (i+1)+"";
         }
-        Nseat1.setModel(new javax.swing.DefaultComboBoxModel<>(priceArray));
+        if(max==0){
+            JOptionPane.showMessageDialog(null,"Sorry, this movie is out of ticket!");
+        }
+        Nseat1.setModel(new javax.swing.DefaultComboBoxModel<>(seatArray));
     }//GEN-LAST:event_GalaxyjTableMouseClicked
 
     private void NSeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NSeatActionPerformed
@@ -1335,8 +1372,13 @@ public class BookingHomeFrame extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) CGVjTable.getModel();
         BookingController booking = new BookingController();
         double price=0;
+        int modelRow = CGVjTable.convertRowIndexToModel(row);
+        Object[] rowData = new Object[table.getColumnCount()];
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            rowData[i] = table.getValueAt(modelRow, i);
+        }
         for(int i =0;i<movie.cgv.size();i++){
-            if(movie.cgv.get(i).getName().equals(table.getValueAt(row, 0).toString()) && movie.cgv.get(i).getMovieTime().equals(table.getValueAt(row, 4))){
+            if(movie.cgv.get(i).getName().equals(rowData[0]) && movie.cgv.get(i).getMovieTime().equals(rowData[5]) && movie.cgv.get(i).getHalls()== (int) rowData[4]){
                 price = movie.cgv.get(i).getTicketPrice();
             }
         }
@@ -1361,8 +1403,13 @@ public class BookingHomeFrame extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) GalaxyjTable.getModel();
         BookingController booking = new BookingController();
         double price=0;
+        int modelRow = GalaxyjTable.convertRowIndexToModel(row);
+        Object[] rowData = new Object[table.getColumnCount()];
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            rowData[i] = table.getValueAt(modelRow, i);
+        }
         for(int i =0;i<movie.galaxy.size();i++){
-            if(movie.galaxy.get(i).getName().equals(table.getValueAt(row, 0).toString()) && movie.galaxy.get(i).getMovieTime().equals(table.getValueAt(row, 4))){
+            if(movie.galaxy.get(i).getName().equals(rowData[0]) && movie.galaxy.get(i).getMovieTime().equals(rowData[5]) && movie.galaxy.get(i).getHalls()== (int) rowData[4]){
                 price = movie.galaxy.get(i).getTicketPrice();
             }
         }
@@ -1380,8 +1427,13 @@ public class BookingHomeFrame extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) LotteTable.getModel();
         BookingController booking = new BookingController();
         double price=0;
+        int modelRow = LotteTable.convertRowIndexToModel(row);
+        Object[] rowData = new Object[table.getColumnCount()];
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            rowData[i] = table.getValueAt(modelRow, i);
+        }
         for(int i =0;i<movie.lotte.size();i++){
-            if(movie.lotte.get(i).getName().equals(table.getValueAt(row, 0).toString()) && movie.lotte.get(i).getMovieTime().equals(table.getValueAt(row, 4))){
+            if(movie.lotte.get(i).getName().equals(rowData[0]) && movie.lotte.get(i).getMovieTime().equals(rowData[5]) && movie.lotte.get(i).getHalls()== (int) rowData[4]){
                 price = movie.lotte.get(i).getTicketPrice();
             }
         }
@@ -1401,7 +1453,12 @@ public class BookingHomeFrame extends javax.swing.JFrame {
                     int selectedIndex =Integer.parseInt((String) Nseat1.getSelectedItem());
                     DefaultTableModel table = (DefaultTableModel) GalaxyjTable.getModel();
                     BookingController booking = new BookingController();
-                    int flag = booking.BookingGalaxyMovie(selectedIndex, row, table);
+                    int modelRow = GalaxyjTable.convertRowIndexToModel(row);
+                    Object[] rowData = new Object[table.getColumnCount()];
+                    for (int i = 0; i < table.getColumnCount(); i++) {
+                        rowData[i] = table.getValueAt(modelRow, i);
+                    }
+                    int flag = booking.BookingGalaxyMovie(selectedIndex, rowData);
                     if (flag == 1){
                         final BookingHomeFrame Frame = new BookingHomeFrame();
                         Frame.setVisible(true);

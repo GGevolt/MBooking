@@ -4,6 +4,7 @@
  */
 package com.mycompany.moviebooking;
 
+import java.time.DateTimeException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
@@ -281,8 +282,10 @@ public class AddmovieFrame extends javax.swing.JFrame {
                 movie.addmvoie(cinema, name, director, year, ticketPrice, movieTime, seatNumber, genre, halls);
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null,"Invalid input format! Please enter the valid data.");
-        } catch (Exception f){
+            JOptionPane.showMessageDialog(null,"Invalid number input format! Please enter the valid data.");
+        }catch(DateTimeException g){
+            JOptionPane.showMessageDialog(null,"Invalid date input format! Please enter the valid data.");
+        }catch (Exception f){
             JOptionPane.showMessageDialog(null, "Error");
             System.out.println(f.getMessage());
         }

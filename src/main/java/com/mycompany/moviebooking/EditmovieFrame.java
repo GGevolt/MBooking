@@ -384,7 +384,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
 
         jLabel5.setText("Release Year:");
 
-        jLabel16.setText("Seat Number:");
+        jLabel16.setText("Total Seat:");
 
         jLabel17.setText("Director:");
 
@@ -554,7 +554,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
 
         jLabel25.setText("Release Year:");
 
-        jLabel26.setText("Seat Number:");
+        jLabel26.setText("Total Seat:");
 
         jLabel27.setText("Director:");
 
@@ -902,7 +902,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
                     }
                     
             }
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null,"Invalid input format! Please enter the valid data.");
         } catch (Exception f){
             JOptionPane.showMessageDialog(null, "Error");
@@ -943,7 +943,7 @@ public class EditmovieFrame extends javax.swing.JFrame {
                         this.dispose();
                     }
             }
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null,"Invalid input format! Please enter the valid data.");
         } catch (Exception f){
             JOptionPane.showMessageDialog(null, "Error");

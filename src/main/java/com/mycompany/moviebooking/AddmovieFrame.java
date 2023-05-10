@@ -6,7 +6,6 @@ package com.mycompany.moviebooking;
 
 import java.time.DateTimeException;
 import java.util.Date;
-import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
 
 
